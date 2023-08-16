@@ -33,7 +33,8 @@ export class HttpClient {
 
       return data;
     } catch (e) {
-      throw new Error(e?.response?.data ?? e?.message ?? e);
+      console.error(e?.response?.data ?? e?.message ?? e);
+      throw new Error(e?.response?.data?.message ?? e?.message ?? e);
     }
   }
 }

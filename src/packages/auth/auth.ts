@@ -1,8 +1,9 @@
-import { Calendar, CourseCalendar } from "../calendar/course.calendar";
+import { Calendar, ICalendar } from "../course/calendar/course.calendar";
+import { CourseResource, ICourseResource } from "../course/course";
 import { HttpClient } from "../http/http.client";
 import { Student } from "./auth.student";
 
-export interface AutogestionAuth {
+export interface IAutogestion {
   /** The current logged in student information, if initialized. */
   student?: Student;
 
@@ -22,11 +23,14 @@ export interface AutogestionAuth {
  *
  * @class
  */
-export class Autogestion implements AutogestionAuth {
+export class Autogestion implements IAutogestion {
   student?: Student;
 
   /** Access the classes calendar namespace. */
-  _calendar?: CourseCalendar;
+  private _calendar?: ICalendar;
+
+  /** Access the courses namespace. */
+  private _courses?: ICourseResource;
 
   /** HTTP client to make API requests. */
   private _http: HttpClient;
@@ -41,8 +45,24 @@ export class Autogestion implements AutogestionAuth {
     this._http = new HttpClient(
       "https://webservice.frvm.utn.edu.ar/autogestion",
       null,
-      null,
+      null
     );
+  }
+
+  set username(username: string) {
+    this.#username = username;
+  }
+
+  set password(password: string) {
+    this.#password = password;
+  }
+
+  get calendar(): ICalendar {
+    return this._calendar ?? (this._calendar = new Calendar(this._http));
+  }
+
+  get courses(): ICourseResource {
+    return this._courses ?? (this._courses = new CourseResource(this._http));
   }
 
   public async authenticate(): Promise<Student> {
@@ -65,9 +85,5 @@ export class Autogestion implements AutogestionAuth {
     } catch (e) {
       throw e;
     }
-  }
-
-  get calendar(): CourseCalendar {
-    return this._calendar ?? (this._calendar = new Calendar(this._http));
   }
 }
