@@ -1,3 +1,4 @@
+import { HttpResponse } from "../../../types/http.resource.response";
 import { StudentPersona } from "../../../types/student/student.types";
 import { HttpClient } from "../../http/http.client";
 
@@ -100,32 +101,24 @@ export interface StudentCourse {
   totalFaltas: number;
 }
 
-type StudentCourseInformation = {
-  /** An object that holds all persona information about the student. */
-  persona: StudentPersona;
-
-  /** An array of course entries the student partaked in or is currently partaking. */
-  detalles: Array<StudentCourse>;
-};
-
 export interface IStudentCourses {
   /**
    * Searches for only the current courses being taken by the authenticated student.
    *
    * @noparams
    *
-   * @returns {Promise<StudentCourseInformation>}
+   * @returns {Promise<HttpResponse<Array<StudentCourse>>>}
    */
-  fetchActive(): Promise<StudentCourseInformation>;
+  fetchActive(): Promise<HttpResponse<Array<StudentCourse>>>;
 
   /**
    * Searches for the historic courses taken by the authenticated student.
    *
    * @noparams
    *
-   * @returns {Promise<StudentCourseInformation>}
+   * @returns {Promise<HttpResponse<Array<StudentCourse>>>}
    */
-  fetchHistoric(): Promise<StudentCourseInformation>;
+  fetchHistoric(): Promise<HttpResponse<Array<StudentCourse>>>;
 }
 
 export class StudentCourses implements IStudentCourses {
@@ -134,8 +127,8 @@ export class StudentCourses implements IStudentCourses {
 
   constructor(private readonly _http: HttpClient) {}
 
-  public async fetchActive(): Promise<StudentCourseInformation> {
-    const active = await this._http.request<StudentCourseInformation>(
+  public async fetchActive(): Promise<HttpResponse<Array<StudentCourse>>> {
+    const active = await this._http.request<HttpResponse<Array<StudentCourse>>>(
       this._current,
       "GET"
     );
@@ -149,11 +142,10 @@ export class StudentCourses implements IStudentCourses {
     return active;
   }
 
-  public async fetchHistoric(): Promise<StudentCourseInformation> {
-    const historic = await this._http.request<StudentCourseInformation>(
-      this._historic,
-      "GET"
-    );
+  public async fetchHistoric(): Promise<HttpResponse<Array<StudentCourse>>> {
+    const historic = await this._http.request<
+      HttpResponse<Array<StudentCourse>>
+    >(this._historic, "GET");
 
     // Remove the leading space from the course's name.
     historic.detalles.forEach((course) => {
