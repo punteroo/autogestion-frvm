@@ -10,8 +10,16 @@ Este wrapper está escrito basandose en la [aplicación oficial de la universida
 
 Ofrece una interfáz y cliente personalizado escrito en **Typescript** para utilización en aplicaciones Node con el web service oficial de la universidad.
 
-## Docs
-Puedes leer los docs oficiales del paquete aquí (TODO).
+## Documentación
+Puedes leer los docs oficiales del paquete [aquí](https://github.com/punteroo/autogestion-frvm/wiki).
+
+## Pendientes
+- [X] Flow de autenticación
+- [X] Consultas de recursos (`GET` de estado académico, histórico, exámenes rendidos, horarios de cursado, etc)
+- [ ] Consultar materias electivas
+- [ ] Encuestas Docentes
+- [ ] Inscripción a exámen final y cursado
+- [ ] Solicitud de Certificados
 
 ## Discreción Legal
 No soy responsable por ningún tipo de daño ocasionado a la institución ni a su Web Service utilizando este paquete, simplemente sirve como accesor en código hacia rutas de público conocimiento desde la app oficial. Este es un proyecto "for fun" y no pasa de ello.
