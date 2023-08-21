@@ -5,7 +5,7 @@ import { Student } from "./client.student";
 import { IClientSections } from "./sections/sections";
 export interface IAutogestion {
     /** The current logged in student information, if initialized. */
-    student?: Student;
+    student: Student;
     /**
      * Authenticates the current instance with the given credentials.
      *
@@ -23,11 +23,11 @@ export interface IAutogestion {
  */
 export declare class Autogestion implements IAutogestion {
     #private;
-    student?: Student;
-    private _calendar?;
-    private _courses?;
-    private _sections?;
-    private _exams?;
+    student: Student;
+    private _calendar;
+    private _courses;
+    private _sections;
+    private _exams;
     private _http;
     constructor(username: string, password: string);
     /**
