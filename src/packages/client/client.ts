@@ -7,7 +7,7 @@ import { ClientSections, IClientSections } from "./sections/sections";
 
 export interface IAutogestion {
   /** The current logged in student information, if initialized. */
-  student?: Student;
+  student: Student;
 
   /**
    * Authenticates the current instance with the given credentials.
@@ -26,12 +26,12 @@ export interface IAutogestion {
  * @class
  */
 export class Autogestion implements IAutogestion {
-  student?: Student;
+  student: Student;
 
-  private _calendar?: ICalendar;
-  private _courses?: ICourseResource;
-  private _sections?: IClientSections;
-  private _exams?: IExams;
+  private _calendar: ICalendar;
+  private _courses: ICourseResource;
+  private _sections: IClientSections;
+  private _exams: IExams;
 
   private _http: HttpClient;
 

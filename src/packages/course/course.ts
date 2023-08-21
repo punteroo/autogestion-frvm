@@ -3,11 +3,11 @@ import { StudentCourses } from "./student/course.student";
 
 export interface ICourseResource {
     /** Accesses current courses being taken by the authenticated student. */
-    student?: StudentCourses;
+    student: StudentCourses;
 }
 
 export class CourseResource implements ICourseResource {
-    student?: StudentCourses;
+    student: StudentCourses;
 
     constructor(private readonly _http: HttpClient) {
         this.student = new StudentCourses(_http);
