@@ -1,7 +1,7 @@
 import { HttpResponse } from "../../types/http.resource.response";
 import { HttpClient } from "../http/http.client";
 
-type ExamStatusShort =
+export type ExamStatusShort =
   | "uno"
   | "dos"
   | "tres"
@@ -13,7 +13,7 @@ type ExamStatusShort =
   | "nueve"
   | "diez";
 
-type ExamStatus = `${Uppercase<ExamStatusShort>}`;
+export type ExamStatus = `${Uppercase<ExamStatusShort>}`;
 
 /**
  * An exam entry within the student's academic career.
@@ -55,32 +55,31 @@ export interface ExamEntry {
   };
 
   /** The exam's status (in upper case) */
-  estado: ExamStatus | 'AUSENTE';
+  estado: ExamStatus | "AUSENTE";
 }
 
 export interface ITakenExams {
-    /**
-     * Looks up all the taken exams by the student.
-     *
-     * @noparams
-     *
-     * @returns {Promise<HttpResponse<Array<ExamEntry>>>}
-     */
-    fetch(): Promise<HttpResponse<Array<ExamEntry>>>;
+  /**
+   * Looks up all the taken exams by the student.
+   *
+   * @noparams
+   *
+   * @returns {Promise<HttpResponse<Array<ExamEntry>>>}
+   */
+  fetch(): Promise<HttpResponse<Array<ExamEntry>>>;
+}
+
+export class TakenExams implements ITakenExams {
+  private readonly _taken = "examenes";
+
+  constructor(private readonly _http: HttpClient) {}
+
+  public async fetch(): Promise<HttpResponse<Array<ExamEntry>>> {
+    const takenExams = await this._http.request<HttpResponse<Array<ExamEntry>>>(
+      this._taken,
+      "GET"
+    );
+
+    return takenExams;
   }
-  
-  export class TakenExams implements ITakenExams {
-    private readonly _taken = "examenes";
-  
-    constructor(private readonly _http: HttpClient) {}
-  
-    public async fetch(): Promise<HttpResponse<Array<ExamEntry>>> {
-      const takenExams = await this._http.request<HttpResponse<Array<ExamEntry>>>(
-        this._taken,
-        "GET"
-      );
-  
-      return takenExams;
-    }
-  }
-  
+}

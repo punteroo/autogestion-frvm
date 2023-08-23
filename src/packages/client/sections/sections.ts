@@ -5,7 +5,7 @@ import { HttpClient } from "../../http/http.client";
  *
  * @type
  */
-type ClientSectionName =
+export type ClientSectionName =
   | "pedirCertificados"
   | "certificadoAlumnoRegular"
   | "libroDeTemas"
@@ -20,8 +20,7 @@ type ClientSectionName =
   | "inscripcionExamen"
   | "inscripcionCursado"
   | "pedidoProrrogas"
-  | "encuestas"
-  | string;
+  | "encuestas";
 
 /**
  * Represents a section inside the autogestion client.

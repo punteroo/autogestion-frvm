@@ -1,15 +1,11 @@
 import { HttpClient } from "../http/http.client";
 import { StudentCourses } from "./student/course.student";
-
 export interface ICourse {
     /** Accesses current courses being taken by the authenticated student. */
     student: StudentCourses;
 }
-
-export class Course implements ICourse {
+export declare class Course implements ICourse {
+    private readonly _http;
     student: StudentCourses;
-
-    constructor(private readonly _http: HttpClient) {
-        this.student = new StudentCourses(_http);
-    }
+    constructor(_http: HttpClient);
 }

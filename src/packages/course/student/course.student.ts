@@ -1,8 +1,7 @@
 import { HttpResponse } from "../../../types/http.resource.response";
-import { StudentPersona } from "../../../types/student/student.types";
 import { HttpClient } from "../../http/http.client";
 
-enum CourseStatus {
+export enum CourseStatus {
   /** The course is being taken by the student currently. */
   ACTIVE = "0",
 
@@ -16,7 +15,7 @@ enum CourseStatus {
   APROBADA = "4",
 }
 
-type ActiveCourseGrade = {
+export type ActiveCourseGrade = {
   /** A visual name for this exam. */
   nombre: string;
 
