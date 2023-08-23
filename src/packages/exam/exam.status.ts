@@ -1,22 +1,6 @@
 import { HttpResponse } from "../../types/http.resource.response";
 import { HttpClient } from "../http/http.client";
 
-/**
- * Replaces all occurrences of a substring within a string with another string.
- *
- * Used to infer string literals from a union of string literals.
- *
- * @see https://stackoverflow.com/a/71353081
- */
-type Replace<
-  T extends string,
-  S extends string,
-  D extends string,
-  A extends string = ""
-> = T extends `${infer L}${S}${infer R}`
-  ? Replace<R, S, D, `${A}${L}${D}`>
-  : `${A}${T}`;
-
 type ExamStatusShort =
   | "uno"
   | "dos"
