@@ -1,4 +1,4 @@
-type StudentPersonaAcademicCareer = {
+export type AcademicPersonaCareer = {
   /** The career's unique identifier. */
   id: number;
 
@@ -9,20 +9,31 @@ type StudentPersonaAcademicCareer = {
   codigoAcademico: string;
 };
 
-type StudentPersonaAcademicDetails = {
+export type AcademicPersonaDetails = {
   /** The student's unique identifier (legally) on the university. */
   legajo: string;
 
   /** An object containing the current career details for the student. */
-  especialidad: StudentPersonaAcademicCareer;
+  especialidad: AcademicPersonaCareer;
 };
+
+export type AcademicPersonaTeacher = {
+  /** A unique ID for internal tracking. */
+  id: number;
+
+  /** The teacher's unique identifier (legally) on the university. */
+  legajo: string;
+
+  /** An integer version of the teacher's unique identifier. */
+  legajoInteger: number;
+}
 
 /**
  * Represents the persona instance of a student.
  *
  * Information such as the student's name, surname, and other personal information (DNI, etc.)
  */
-export type StudentPersona = {
+export type AcademicPersona = {
   /** The unique identifier this student is assigned. */
   id: number;
 
@@ -42,10 +53,10 @@ export type StudentPersona = {
   email?: string | null;
 
   /** An object containing the student's academic details. */
-  alumno: StudentPersonaAcademicDetails;
+  alumno: AcademicPersonaDetails;
 
-  /** (Unused?) It would contain administrative information if the student were a teacher. */
-  docente?: any;
+  /** It would contain administrative information if the student were a teacher. */
+  docente: AcademicPersonaTeacher | null;
 
   /** (Unused?) It would contain administrative information if the student were a "director". */
   director?: any;
