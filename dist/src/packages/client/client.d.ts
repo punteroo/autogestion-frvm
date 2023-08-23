@@ -9,12 +9,17 @@ export interface IAutogestion {
     /**
      * Authenticates the current instance with the given credentials.
      *
-     * @param {string} username The student's username, generally being the student's identification code.
-     * @param {string} password The student's password.
+     * @returns {Promise<Student>} The authenticated student information.
+     */
+    authenticate(): Promise<Student>;
+    /**
+     * Authenticates the current instance using a student hash.
+     *
+     * @param {string} hash The student's hash.
      *
      * @returns {Promise<Student>} The authenticated student information.
      */
-    authenticate(username: string, password: string): Promise<Student>;
+    authenticate(hash: string): Promise<Student>;
 }
 /**
  * Represents an authenticated instance of the Autogestion service.
@@ -29,6 +34,7 @@ export declare class Autogestion implements IAutogestion {
     private _sections;
     private _exams;
     private _http;
+    constructor(username: string);
     constructor(username: string, password: string);
     /**
      * Change the client's current username to perform a re-auth.
@@ -70,10 +76,6 @@ export declare class Autogestion implements IAutogestion {
      * @returns {IExams} The Exams resource.
      */
     get exams(): IExams;
-    /**
-     * Authenticates the current instance with the given credentials.
-     *
-     * @returns {Promise<Student>} The authenticated student information.
-     */
     authenticate(): Promise<Student>;
+    authenticate(hash: string): Promise<Student>;
 }

@@ -19,7 +19,7 @@ class Autogestion {
         _Autogestion_password.set(this, void 0);
         tslib_1.__classPrivateFieldSet(this, _Autogestion_username, username, "f");
         tslib_1.__classPrivateFieldSet(this, _Autogestion_password, password, "f");
-        this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", null, null);
+        this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", username, password);
     }
     /**
      * Change the client's current username to perform a re-auth.
@@ -73,13 +73,17 @@ class Autogestion {
     get exams() {
         return this._exams ?? (this._exams = new exam_1.Exams(this._http));
     }
-    /**
-     * Authenticates the current instance with the given credentials.
-     *
-     * @returns {Promise<Student>} The authenticated student information.
-     */
-    async authenticate() {
+    async authenticate(hash) {
         try {
+            if (hash) {
+                // Hash provided, just validate against the server.
+                tslib_1.__classPrivateFieldSet(this, _Autogestion_password, hash, "f");
+                this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", tslib_1.__classPrivateFieldGet(this, _Autogestion_username, "f"), hash);
+                const valid = await this._http.request("validar-hash", "GET");
+                if (!valid)
+                    throw new Error("Invalid hash.");
+                return null;
+            }
             const student = await this._http.request("login", "GET", {
                 nick: tslib_1.__classPrivateFieldGet(this, _Autogestion_username, "f"),
                 password: tslib_1.__classPrivateFieldGet(this, _Autogestion_password, "f"),

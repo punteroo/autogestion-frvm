@@ -12,12 +12,18 @@ export interface IAutogestion {
   /**
    * Authenticates the current instance with the given credentials.
    *
-   * @param {string} username The student's username, generally being the student's identification code.
-   * @param {string} password The student's password.
+   * @returns {Promise<Student>} The authenticated student information.
+   */
+  authenticate(): Promise<Student>;
+
+  /**
+   * Authenticates the current instance using a student hash.
+   *
+   * @param {string} hash The student's hash.
    *
    * @returns {Promise<Student>} The authenticated student information.
    */
-  authenticate(username: string, password: string): Promise<Student>;
+  authenticate(hash: string): Promise<Student>;
 }
 
 /**
@@ -38,14 +44,16 @@ export class Autogestion implements IAutogestion {
   #username: string;
   #password: string;
 
-  constructor(username: string, password: string) {
+  constructor(username: string);
+  constructor(username: string, password: string);
+  constructor(username: string, password?: string) {
     this.#username = username;
     this.#password = password;
 
     this._http = new HttpClient(
       "https://webservice.frvm.utn.edu.ar/autogestion",
-      null,
-      null
+      username,
+      password
     );
   }
 
@@ -107,13 +115,26 @@ export class Autogestion implements IAutogestion {
     return this._exams ?? (this._exams = new Exams(this._http));
   }
 
-  /**
-   * Authenticates the current instance with the given credentials.
-   *
-   * @returns {Promise<Student>} The authenticated student information.
-   */
-  public async authenticate(): Promise<Student> {
+  public async authenticate(): Promise<Student>;
+  public async authenticate(hash: string): Promise<Student>;
+  public async authenticate(hash?: string): Promise<Student> {
     try {
+      if (hash) {
+        // Hash provided, just validate against the server.
+        this.#password = hash;
+        this._http = new HttpClient(
+          "https://webservice.frvm.utn.edu.ar/autogestion",
+          this.#username,
+          hash
+        );
+
+        const valid = await this._http.request<boolean>("validar-hash", "GET");
+
+        if (!valid) throw new Error("Invalid hash.");
+
+        return null;
+      }
+
       const student = await this._http.request<Student>("login", "GET", {
         nick: this.#username,
         password: this.#password,
