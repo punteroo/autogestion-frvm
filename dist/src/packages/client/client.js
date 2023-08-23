@@ -19,7 +19,7 @@ class Autogestion {
         _Autogestion_password.set(this, void 0);
         tslib_1.__classPrivateFieldSet(this, _Autogestion_username, username, "f");
         tslib_1.__classPrivateFieldSet(this, _Autogestion_password, password, "f");
-        this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", username, password);
+        this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", null, null);
     }
     /**
      * Change the client's current username to perform a re-auth.

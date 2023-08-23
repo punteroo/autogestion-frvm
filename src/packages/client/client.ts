@@ -52,8 +52,8 @@ export class Autogestion implements IAutogestion {
 
     this._http = new HttpClient(
       "https://webservice.frvm.utn.edu.ar/autogestion",
-      username,
-      password
+      null,
+      null
     );
   }
 
