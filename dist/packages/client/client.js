@@ -52,10 +52,10 @@ class Autogestion {
     /**
      * Accesses the Courses resource within the Autogestion client.
      *
-     * @returns {ICourseResource} The Courses resource.
+     * @returns {ICourse} The Courses resource.
      */
     get courses() {
-        return this._courses ?? (this._courses = new course_1.CourseResource(this._http));
+        return this._courses ?? (this._courses = new course_1.Course(this._http));
     }
     /**
      * Accesses the Sections resource within the Autogestion client.

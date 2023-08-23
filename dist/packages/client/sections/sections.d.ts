@@ -4,7 +4,7 @@ import { HttpClient } from "../../http/http.client";
  *
  * @type
  */
-type ClientSectionName = "pedirCertificados" | "certificadoAlumnoRegular" | "libroDeTemas" | "calendarioAcademico" | "materiasCursando" | "estadoAcademico" | "datosPersonales" | "cambiarContrasenia" | "horarioCursado" | "materiasElectivas" | "examenes" | "inscripcionExamen" | "inscripcionCursado" | "pedidoProrrogas" | "encuestas" | string;
+export type ClientSectionName = "pedirCertificados" | "certificadoAlumnoRegular" | "libroDeTemas" | "calendarioAcademico" | "materiasCursando" | "estadoAcademico" | "datosPersonales" | "cambiarContrasenia" | "horarioCursado" | "materiasElectivas" | "examenes" | "inscripcionExamen" | "inscripcionCursado" | "pedidoProrrogas" | "encuestas";
 /**
  * Represents a section inside the autogestion client.
  *
@@ -36,4 +36,3 @@ export declare class ClientSections implements IClientSections {
     constructor(_http: HttpClient);
     fetchAll(): Promise<Array<ClientSection>>;
 }
-export {};

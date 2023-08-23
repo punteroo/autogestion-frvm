@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentCourses = void 0;
+exports.StudentCourses = exports.CourseStatus = void 0;
 var CourseStatus;
 (function (CourseStatus) {
     /** The course is being taken by the student currently. */
@@ -11,7 +11,7 @@ var CourseStatus;
     CourseStatus["REGULAR"] = "3";
     /** The course was taken by the student in the past, and has finished it completely. */
     CourseStatus["APROBADA"] = "4";
-})(CourseStatus || (CourseStatus = {}));
+})(CourseStatus || (exports.CourseStatus = CourseStatus = {}));
 class StudentCourses {
     constructor(_http) {
         this._http = _http;

@@ -1,2 +1,2 @@
-import { Autogestion } from './src';
+import { Autogestion } from "./packages/client";
 export default Autogestion;

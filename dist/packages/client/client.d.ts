@@ -1,5 +1,5 @@
 import { ICalendar } from "../course/calendar/course.calendar";
-import { ICourseResource } from "../course/course";
+import { ICourse } from "../course/course";
 import { IExams } from "../exam/exam";
 import { Student } from "./client.student";
 import { IClientSections } from "./sections/sections";
@@ -61,9 +61,9 @@ export declare class Autogestion implements IAutogestion {
     /**
      * Accesses the Courses resource within the Autogestion client.
      *
-     * @returns {ICourseResource} The Courses resource.
+     * @returns {ICourse} The Courses resource.
      */
-    get courses(): ICourseResource;
+    get courses(): ICourse;
     /**
      * Accesses the Sections resource within the Autogestion client.
      *

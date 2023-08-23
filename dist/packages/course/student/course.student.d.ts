@@ -1,6 +1,6 @@
 import { HttpResponse } from "../../../types/http.resource.response";
 import { HttpClient } from "../../http/http.client";
-declare enum CourseStatus {
+export declare enum CourseStatus {
     /** The course is being taken by the student currently. */
     ACTIVE = "0",
     /** The course was taken by the student in the past, and failed. */
@@ -10,7 +10,7 @@ declare enum CourseStatus {
     /** The course was taken by the student in the past, and has finished it completely. */
     APROBADA = "4"
 }
-type ActiveCourseGrade = {
+export type ActiveCourseGrade = {
     /** A visual name for this exam. */
     nombre: string;
     /** The grade obtained on the exam (numeric) */
@@ -101,4 +101,3 @@ export declare class StudentCourses implements IStudentCourses {
     fetchActive(): Promise<HttpResponse<Array<StudentCourse>>>;
     fetchHistoric(): Promise<HttpResponse<Array<StudentCourse>>>;
 }
-export {};

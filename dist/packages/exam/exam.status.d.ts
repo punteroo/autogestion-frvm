@@ -1,7 +1,7 @@
 import { HttpResponse } from "../../types/http.resource.response";
 import { HttpClient } from "../http/http.client";
-type ExamStatusShort = "uno" | "dos" | "tres" | "cuatro" | "cinco" | "seis" | "siete" | "ocho" | "nueve" | "diez";
-type ExamStatus = `${Uppercase<ExamStatusShort>}`;
+export type ExamStatusShort = "uno" | "dos" | "tres" | "cuatro" | "cinco" | "seis" | "siete" | "ocho" | "nueve" | "diez";
+export type ExamStatus = `${Uppercase<ExamStatusShort>}`;
 /**
  * An exam entry within the student's academic career.
  *
@@ -32,7 +32,7 @@ export interface ExamEntry {
         codigoAcademico: string;
     };
     /** The exam's status (in upper case) */
-    estado: ExamStatus | 'AUSENTE';
+    estado: ExamStatus | "AUSENTE";
 }
 export interface ITakenExams {
     /**
@@ -50,4 +50,3 @@ export declare class TakenExams implements ITakenExams {
     constructor(_http: HttpClient);
     fetch(): Promise<HttpResponse<Array<ExamEntry>>>;
 }
-export {};
