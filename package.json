@@ -1,6 +1,6 @@
 {
   "name": "autogestion-frvm",
-  "version": "1.2.0-dev",
+  "version": "1.2.1-dev",
   "description": "An API wrapper for UTN FRVM's Autogestion platform.",
   "repository": {
     "type": "git",
