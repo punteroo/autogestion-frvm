@@ -71,6 +71,15 @@ export interface PollEntryTeacher {
     /** The name of the type of teacher. */
     nombre: string;
   };
+
+  /** An object that holds the type of teacher in regards to the course. */
+  tipoCargoDocente: {
+    /** The unique identifier for this type of teacher. */
+    id: number;
+
+    /** The name of the type of teacher. */
+    nombre: string;
+  };
 }
 
 export interface PollEntry {

@@ -1,3 +1,1 @@
-import { Autogestion } from './src';
-
-export default Autogestion;
+export * from './dist';

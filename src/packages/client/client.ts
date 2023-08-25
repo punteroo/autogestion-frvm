@@ -2,6 +2,7 @@ import { Calendar, ICalendar } from "../course/calendar/course.calendar";
 import { Course, ICourse } from "../course/course";
 import { Exams, IExams } from "../exam/exam";
 import { HttpClient } from "../http/http.client";
+import { IPolling, Polling } from "../polling";
 import { Student } from "./client.student";
 import { ClientSections, IClientSections } from "./sections/sections";
 
@@ -38,6 +39,7 @@ export class Autogestion implements IAutogestion {
   private _courses: ICourse;
   private _sections: IClientSections;
   private _exams: IExams;
+  private _polling: IPolling;
 
   private _http: HttpClient;
 
@@ -113,6 +115,15 @@ export class Autogestion implements IAutogestion {
    */
   get exams(): IExams {
     return this._exams ?? (this._exams = new Exams(this._http));
+  }
+
+  /**
+   * Accesses the Polling resource within the Autogestion client.
+   *
+   * @returns {IPolling} The Polling resource.
+   */
+  get polling(): IPolling {
+    return this._polling ?? (this._polling = new Polling(this._http));
   }
 
   public async authenticate(): Promise<Student>;

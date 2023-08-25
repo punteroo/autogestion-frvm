@@ -8,9 +8,9 @@ export interface IPollingAvailable {
    *
    * @noparams
    *
-   * @returns {Promise<HttpResponse<Array<PollEntry>>>}
+   * @returns {Promise<Array<PollEntry>>}
    */
-  fetch(): Promise<HttpResponse<Array<PollEntry>>>;
+  fetch(): Promise<Array<PollEntry>>;
 }
 
 export class PollingAvailable implements IPollingAvailable {
@@ -18,8 +18,8 @@ export class PollingAvailable implements IPollingAvailable {
 
   constructor(private readonly _http: HttpClient) {}
 
-  public async fetch(): Promise<HttpResponse<Array<PollEntry>>> {
-    const availablePolls = await this._http.request<HttpResponse<Array<PollEntry>>>(
+  public async fetch(): Promise<Array<PollEntry>> {
+    const availablePolls = await this._http.request<Array<PollEntry>>(
       this._available,
       "GET"
     );
