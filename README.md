@@ -15,11 +15,20 @@ Puedes leer los docs oficiales del paquete [aquí](https://github.com/punteroo/a
 
 ## Pendientes
 - [X] Flow de autenticación
-- [X] Consultas de recursos (`GET` de estado académico, histórico, exámenes rendidos, horarios de cursado, etc)
+- [X] Consultar mi perfil
+- [X] Consultas de recursos
+    - [X] Examenes Rendidos
+    - [X] Materias en Curso (Visualización de Notas)
+    - [X] Histórico de Materias
+    - [X] Encuestas Docentes Disponibles
+    - [X] Examenes Disponibles
+    - [X] Horarios de Cursado 
 - [ ] Consultar materias electivas
-- [ ] Encuestas Docentes
-- [ ] Inscripción a exámen final y cursado
+- [ ] Responder encuestas Docentes
+- [ ] Inscripción a exámen final
+- [ ] Inscripción a cursado
 - [ ] Solicitud de Certificados
+- [ ] Cambio de contraseña
 
 ## Discreción Legal
 No soy responsable por ningún tipo de daño ocasionado a la institución ni a su Web Service utilizando este paquete, simplemente sirve como accesor en código hacia rutas de público conocimiento desde la app oficial. Este es un proyecto "for fun" y no pasa de ello.
