@@ -1,6 +1,7 @@
 import { ICalendar } from "../course/calendar/course.calendar";
 import { ICourse } from "../course/course";
 import { IExams } from "../exam/exam";
+import { IPolling } from "../polling";
 import { Student } from "./client.student";
 import { IClientSections } from "./sections/sections";
 export interface IAutogestion {
@@ -33,6 +34,7 @@ export declare class Autogestion implements IAutogestion {
     private _courses;
     private _sections;
     private _exams;
+    private _polling;
     private _http;
     constructor(username: string);
     constructor(username: string, password: string);
@@ -76,6 +78,12 @@ export declare class Autogestion implements IAutogestion {
      * @returns {IExams} The Exams resource.
      */
     get exams(): IExams;
+    /**
+     * Accesses the Polling resource within the Autogestion client.
+     *
+     * @returns {IPolling} The Polling resource.
+     */
+    get polling(): IPolling;
     authenticate(): Promise<Student>;
     authenticate(hash: string): Promise<Student>;
 }

@@ -3,7 +3,7 @@ var _HttpClient_baseUri, _HttpClient_accessToken;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpClient = void 0;
 const tslib_1 = require("tslib");
-const axios_1 = require("axios");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 class HttpClient {
     constructor(baseUri, username, password) {
         _HttpClient_baseUri.set(this, void 0);

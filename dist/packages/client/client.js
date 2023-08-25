@@ -7,6 +7,7 @@ const course_calendar_1 = require("../course/calendar/course.calendar");
 const course_1 = require("../course/course");
 const exam_1 = require("../exam/exam");
 const http_client_1 = require("../http/http.client");
+const polling_1 = require("../polling");
 const sections_1 = require("./sections/sections");
 /**
  * Represents an authenticated instance of the Autogestion service.
@@ -72,6 +73,14 @@ class Autogestion {
      */
     get exams() {
         return this._exams ?? (this._exams = new exam_1.Exams(this._http));
+    }
+    /**
+     * Accesses the Polling resource within the Autogestion client.
+     *
+     * @returns {IPolling} The Polling resource.
+     */
+    get polling() {
+        return this._polling ?? (this._polling = new polling_1.Polling(this._http));
     }
     async authenticate(hash) {
         try {
