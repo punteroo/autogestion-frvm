@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentCourses = exports.CourseStatus = void 0;
+const course_student_academic_1 = require("./academic/course.student.academic");
 var CourseStatus;
 (function (CourseStatus) {
     /** The course is being taken by the student currently. */
@@ -17,6 +18,15 @@ class StudentCourses {
         this._http = _http;
         this._current = "MateriasCursando";
         this._historic = "MateriasCursando/historico";
+        this._academic = new course_student_academic_1.StudentAcademic(_http);
+    }
+    /**
+     * Accesses the student's academic information.
+     *
+     * @returns {IStudentAcademic}
+     */
+    get academic() {
+        return this._academic;
     }
     async fetchActive() {
         const active = await this._http.request(this._current, "GET");
