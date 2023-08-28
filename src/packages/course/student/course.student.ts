@@ -1,5 +1,9 @@
 import { HttpResponse } from "../../../types/http.resource.response";
 import { HttpClient } from "../../http/http.client";
+import {
+  IStudentAcademic,
+  StudentAcademic,
+} from "./academic/course.student.academic";
 
 export enum CourseStatus {
   /** The course is being taken by the student currently. */
@@ -124,7 +128,20 @@ export class StudentCourses implements IStudentCourses {
   private readonly _current = "MateriasCursando";
   private readonly _historic = "MateriasCursando/historico";
 
-  constructor(private readonly _http: HttpClient) {}
+  private readonly _academic: IStudentAcademic;
+
+  constructor(private readonly _http: HttpClient) {
+    this._academic = new StudentAcademic(_http);
+  }
+
+  /**
+   * Accesses the student's academic information.
+   *
+   * @returns {IStudentAcademic}
+   */
+  public get academic(): IStudentAcademic {
+    return this._academic;
+  }
 
   public async fetchActive(): Promise<HttpResponse<Array<StudentCourse>>> {
     const active = await this._http.request<HttpResponse<Array<StudentCourse>>>(
