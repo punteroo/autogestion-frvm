@@ -13,11 +13,14 @@ export enum CourseStatus {
   /** The course was taken by the student in the past, and failed. */
   LIBRE = "1",
 
+  /** The course was taken by the student in the past, and has passed the final exam. */
+  APROBADA = "2",
+
   /** The course was taken by the student in the past, and has finished it partially (missing final grade/exam). */
   REGULAR = "3",
 
-  /** The course was taken by the student in the past, and has finished it completely. */
-  APROBADA = "4",
+  /** The course was taken by the student in the past, and has passed it directly (promoted). */
+  PROMOCIONADA = "4",
 }
 
 export type ActiveCourseGrade = {
