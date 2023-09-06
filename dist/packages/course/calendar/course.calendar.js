@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Calendar = void 0;
 class Calendar {
+    _http;
+    _base = "fechas-cursado";
     constructor(_http) {
         this._http = _http;
-        this._base = "fechas-cursado";
     }
     async fetch() {
         try {

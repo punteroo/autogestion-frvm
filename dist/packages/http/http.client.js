@@ -1,24 +1,23 @@
 "use strict";
-var _HttpClient_baseUri, _HttpClient_accessToken;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpClient = void 0;
 const tslib_1 = require("tslib");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 class HttpClient {
+    #baseUri;
+    #accessToken;
     constructor(baseUri, username, password) {
-        _HttpClient_baseUri.set(this, void 0);
-        _HttpClient_accessToken.set(this, void 0);
-        tslib_1.__classPrivateFieldSet(this, _HttpClient_baseUri, baseUri, "f");
-        tslib_1.__classPrivateFieldSet(this, _HttpClient_accessToken, Buffer.from(username && password ? `${username}:${password}` : "").toString("base64"), "f");
+        this.#baseUri = baseUri;
+        this.#accessToken = Buffer.from(username && password ? `${username}:${password}` : "").toString("base64");
     }
     async request(resource, method, headers, body) {
-        const url = `${tslib_1.__classPrivateFieldGet(this, _HttpClient_baseUri, "f")}/${resource}`;
+        const url = `${this.#baseUri}/${resource}`;
         try {
             const { data } = await (0, axios_1.default)({
                 method,
                 url,
                 headers: {
-                    Authorization: `Basic ${tslib_1.__classPrivateFieldGet(this, _HttpClient_accessToken, "f")}`,
+                    Authorization: `Basic ${this.#accessToken}`,
                     ...(headers ?? {}),
                 },
                 data: body ?? undefined,
@@ -32,4 +31,3 @@ class HttpClient {
     }
 }
 exports.HttpClient = HttpClient;
-_HttpClient_baseUri = new WeakMap(), _HttpClient_accessToken = new WeakMap();

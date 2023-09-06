@@ -1,3 +1,4 @@
+import { CareerMetadata } from "../../types";
 import { HttpResponse } from "../../types/http.resource.response";
 import { HttpClient } from "../http/http.client";
 export type ExamStatusShort = "uno" | "dos" | "tres" | "cuatro" | "cinco" | "seis" | "siete" | "ocho" | "nueve" | "diez";
@@ -25,12 +26,7 @@ export interface ExamEntry {
     /** The descriptive status for this exam entry. */
     estadoAprobacion: "APROBADO" | "DESAPROBADO" | "AUSENTE";
     /** An object that contains information about the course the exam belongs to. */
-    materia: {
-        /** The course's name. */
-        nombre: string;
-        /** The course's ID. */
-        codigoAcademico: string;
-    };
+    materia: CareerMetadata;
     /** The exam's status (in upper case) */
     estado: ExamStatus | "AUSENTE";
 }

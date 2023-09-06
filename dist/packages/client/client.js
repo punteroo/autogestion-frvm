@@ -1,8 +1,6 @@
 "use strict";
-var _Autogestion_username, _Autogestion_password;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Autogestion = void 0;
-const tslib_1 = require("tslib");
 const course_calendar_1 = require("../course/calendar/course.calendar");
 const course_1 = require("../course/course");
 const exam_1 = require("../exam/exam");
@@ -15,11 +13,18 @@ const sections_1 = require("./sections/sections");
  * @class
  */
 class Autogestion {
+    student;
+    _calendar;
+    _courses;
+    _sections;
+    _exams;
+    _polling;
+    _http;
+    #username;
+    #password;
     constructor(username, password) {
-        _Autogestion_username.set(this, void 0);
-        _Autogestion_password.set(this, void 0);
-        tslib_1.__classPrivateFieldSet(this, _Autogestion_username, username, "f");
-        tslib_1.__classPrivateFieldSet(this, _Autogestion_password, password, "f");
+        this.#username = username;
+        this.#password = password;
         this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", null, null);
     }
     /**
@@ -30,7 +35,7 @@ class Autogestion {
      * @returns {void}
      */
     set username(username) {
-        tslib_1.__classPrivateFieldSet(this, _Autogestion_username, username, "f");
+        this.#username = username;
     }
     /**
      * Change the client's current password to perform a re-auth.
@@ -40,7 +45,7 @@ class Autogestion {
      * @returns {void}
      */
     set password(password) {
-        tslib_1.__classPrivateFieldSet(this, _Autogestion_password, password, "f");
+        this.#password = password;
     }
     /**
      * Accesses the Calendar resource within the Autogestion client.
@@ -86,20 +91,20 @@ class Autogestion {
         try {
             if (hash) {
                 // Hash provided, just validate against the server.
-                tslib_1.__classPrivateFieldSet(this, _Autogestion_password, hash, "f");
-                this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", tslib_1.__classPrivateFieldGet(this, _Autogestion_username, "f"), hash);
+                this.#password = hash;
+                this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", this.#username, hash);
                 const valid = await this._http.request("validar-hash", "GET");
                 if (!valid)
                     throw new Error("Invalid hash.");
                 return null;
             }
             const student = await this._http.request("login", "GET", {
-                nick: tslib_1.__classPrivateFieldGet(this, _Autogestion_username, "f"),
-                password: tslib_1.__classPrivateFieldGet(this, _Autogestion_password, "f"),
+                nick: this.#username,
+                password: this.#password,
             });
             this.student = student;
             // Instance the client.
-            this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", tslib_1.__classPrivateFieldGet(this, _Autogestion_username, "f"), student.hashActual);
+            this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", this.#username, student.hashActual);
             return student;
         }
         catch (e) {
@@ -108,4 +113,3 @@ class Autogestion {
     }
 }
 exports.Autogestion = Autogestion;
-_Autogestion_username = new WeakMap(), _Autogestion_password = new WeakMap();

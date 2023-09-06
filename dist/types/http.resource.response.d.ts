@@ -10,3 +10,9 @@ export type HttpResponse<T> = {
     /** The response data from the resource. */
     detalles: T;
 };
+/**
+ * Makes certain properties within a type optional.
+ *
+ * @type
+ */
+export type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> & Partial<Pick<Type, Key>>;
