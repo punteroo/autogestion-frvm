@@ -14,10 +14,12 @@ var CourseStatus;
     CourseStatus["APROBADA"] = "4";
 })(CourseStatus || (exports.CourseStatus = CourseStatus = {}));
 class StudentCourses {
+    _http;
+    _current = "MateriasCursando";
+    _historic = "MateriasCursando/historico";
+    _academic;
     constructor(_http) {
         this._http = _http;
-        this._current = "MateriasCursando";
-        this._historic = "MateriasCursando/historico";
         this._academic = new course_student_academic_1.StudentAcademic(_http);
     }
     /**

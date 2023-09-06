@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentAcademic = void 0;
 class StudentAcademic {
+    _http;
+    _status = "estado-academico";
     constructor(_http) {
         this._http = _http;
-        this._status = "estado-academico";
     }
     async fetch() {
         try {

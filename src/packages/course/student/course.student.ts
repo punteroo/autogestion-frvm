@@ -1,3 +1,4 @@
+import { CareerMetadata } from "../../../types";
 import { HttpResponse } from "../../../types/http.resource.response";
 import { HttpClient } from "../../http/http.client";
 import {
@@ -92,13 +93,7 @@ export interface StudentCourse {
   estadoMateria: "CURSANDO" | null;
 
   /** A (repeated) property that holds the course's information. */
-  materia: {
-    /** The course's name. */
-    nombre: string;
-
-    /** The course's code. */
-    codigoAcademico: string;
-  };
+  materia: CareerMetadata;
 
   /** The total amount of abscenses the student had on this course. */
   totalFaltas: number;

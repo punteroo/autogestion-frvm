@@ -1,11 +1,8 @@
+import { CareerMetadata } from "../academic/academic.status.entry";
 export type AcademicPersonaCareer = {
     /** The career's unique identifier. */
     id: number;
-    /** The career's name. */
-    nombre: string;
-    /** The career's code. */
-    codigoAcademico: string;
-};
+} & CareerMetadata;
 export type AcademicPersonaDetails = {
     /** The student's unique identifier (legally) on the university. */
     legajo: string;

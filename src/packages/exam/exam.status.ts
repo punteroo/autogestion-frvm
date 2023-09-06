@@ -1,3 +1,4 @@
+import { CareerMetadata } from "../../types";
 import { HttpResponse } from "../../types/http.resource.response";
 import { HttpClient } from "../http/http.client";
 
@@ -46,13 +47,7 @@ export interface ExamEntry {
   estadoAprobacion: "APROBADO" | "DESAPROBADO" | "AUSENTE";
 
   /** An object that contains information about the course the exam belongs to. */
-  materia: {
-    /** The course's name. */
-    nombre: string;
-
-    /** The course's ID. */
-    codigoAcademico: string;
-  };
+  materia: CareerMetadata;
 
   /** The exam's status (in upper case) */
   estado: ExamStatus | "AUSENTE";

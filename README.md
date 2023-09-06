@@ -14,21 +14,32 @@ Ofrece una interfáz y cliente personalizado escrito en **Typescript** para util
 Puedes leer los docs oficiales del paquete [aquí](https://github.com/punteroo/autogestion-frvm/wiki).
 
 ## Pendientes
-- [X] Flow de autenticación
-- [X] Consultar mi perfil
-- [X] Consultas de recursos
-    - [X] Examenes Rendidos
-    - [X] Materias en Curso (Visualización de Notas)
-    - [X] Histórico de Materias
-    - [X] Encuestas Docentes Disponibles
-    - [X] Examenes Disponibles
-    - [X] Horarios de Cursado 
-- [ ] Consultar materias electivas
-- [ ] Responder encuestas Docentes
-- [ ] Inscripción a exámen final
-- [ ] Inscripción a cursado
-- [ ] Solicitud de Certificados
-- [ ] Cambio de contraseña
+- [X] Autenticación con el Web Service (Hash / Password)
+- [X] Perfil Académico
+    - [ ] Cambiar contraseña
+- [X] Consultas de Recursos
+    - [X] Histórico de exámenes rendidos
+    - [X] Materias en curso
+    - [X] Histórico de materias cursadas
+    - [X] Estado Académico
+    - [X] Horarios de cursado para materias actuales
+- [ ] Administración de Encuestas Docentes
+    - [X] Consultar encuestas docentes disponibles
+    - [ ] Consultar preguntas de una encuesta docente
+    - [ ] Responder encuestas docentes
+- [X] Administración de Exámenes Finales
+    - [X] Consultar exámenes disponibles para rendir
+    - [X] Consultar turnos de exámenes específicos
+    - [X] Inscribir a exámen final
+    - [X] Anular inscripción a exámen final
+- [ ] Administración de Cursado
+    - [ ] Consultar materias disponibles para cursar
+    - [ ] Consultar comisiones disponibles de una materia
+    - [ ] Inscribir a cursado de una materia
+    - [ ] Anular inscripción a cursado
+- [ ] Administración de Certificados
+    - [ ] Consultar certificados disponibles
+    - [ ] Solicitar un certificado
 
 ## Discreción Legal
 No soy responsable por ningún tipo de daño ocasionado a la institución ni a su Web Service utilizando este paquete, simplemente sirve como accesor en código hacia rutas de público conocimiento desde la app oficial. Este es un proyecto "for fun" y no pasa de ello.

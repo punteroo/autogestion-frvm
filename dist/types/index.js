@@ -4,3 +4,7 @@ const tslib_1 = require("tslib");
 tslib_1.__exportStar(require("./academic/academic.status.entry"), exports);
 tslib_1.__exportStar(require("./persona/persona.types"), exports);
 tslib_1.__exportStar(require("./polls/poll.entry"), exports);
+tslib_1.__exportStar(require("./exam/exam.available"), exports);
+tslib_1.__exportStar(require("./exam/exam.enroll"), exports);
+tslib_1.__exportStar(require("./exam/exam.turn"), exports);
+tslib_1.__exportStar(require("./exam/exam.void"), exports);

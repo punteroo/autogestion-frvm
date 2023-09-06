@@ -42,3 +42,16 @@ export interface AcademicStatusEntry
   /** The year in which this course was taken. It's always null for this context. */
   anioCursado: null;
 }
+
+/**
+ * A career metadata object.
+ *
+ * @interface
+ */
+export interface CareerMetadata {
+  /** The course's name. */
+  nombre: string;
+
+  /** The course's ID. */
+  codigoAcademico: string;
+}
