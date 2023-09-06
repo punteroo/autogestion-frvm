@@ -8,10 +8,12 @@ var CourseStatus;
     CourseStatus["ACTIVE"] = "0";
     /** The course was taken by the student in the past, and failed. */
     CourseStatus["LIBRE"] = "1";
+    /** The course was taken by the student in the past, and has passed the final exam. */
+    CourseStatus["APROBADA"] = "2";
     /** The course was taken by the student in the past, and has finished it partially (missing final grade/exam). */
     CourseStatus["REGULAR"] = "3";
-    /** The course was taken by the student in the past, and has finished it completely. */
-    CourseStatus["APROBADA"] = "4";
+    /** The course was taken by the student in the past, and has passed it directly (promoted). */
+    CourseStatus["PROMOCIONADA"] = "4";
 })(CourseStatus || (exports.CourseStatus = CourseStatus = {}));
 class StudentCourses {
     _http;
