@@ -44,7 +44,7 @@ export interface ExamEntry {
   codigoMateria: string;
 
   /** The descriptive status for this exam entry. */
-  estadoAprobacion: "APROBADO" | "DESAPROBADO" | "AUSENTE";
+  estadoAprobacion: "APROBADO" | "NO_APROBADO" | "AUSENTE";
 
   /** An object that contains information about the course the exam belongs to. */
   materia: CareerMetadata;

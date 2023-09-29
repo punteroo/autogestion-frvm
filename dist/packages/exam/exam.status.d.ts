@@ -24,7 +24,7 @@ export interface ExamEntry {
     /** An unique ID that represents the course this exam belongs to. */
     codigoMateria: string;
     /** The descriptive status for this exam entry. */
-    estadoAprobacion: "APROBADO" | "DESAPROBADO" | "AUSENTE";
+    estadoAprobacion: "APROBADO" | "NO_APROBADO" | "AUSENTE";
     /** An object that contains information about the course the exam belongs to. */
     materia: CareerMetadata;
     /** The exam's status (in upper case) */
