@@ -3,6 +3,7 @@ export * from './academic/academic.status.entry';
 export * from './persona/persona.types';
 
 export * from './polls/poll.entry';
+export * from './polls/poll.questions';
 
 export * from './exam/exam.available';
 export * from './exam/exam.enroll';
