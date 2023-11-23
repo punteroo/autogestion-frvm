@@ -54,6 +54,12 @@ export interface PollEntryQuestion {
 
   /** Object that holds all the data for the question. */
   pregunta: PollEntryQuestionData;
+
+  /** Optional. Used for answering a specific question when they are `radius` type. */
+  respuesta?: number;
+
+  /** Optional. Used for answering a specific question when they are `text` type. */
+  opinion?: string;
 }
 
 /**
