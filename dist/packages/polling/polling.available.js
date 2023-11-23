@@ -5,6 +5,7 @@ class PollingAvailable {
     _http;
     _available = "encuestas/encuestas-disponibles";
     _polls = "encuestas/preguntas";
+    _respond = "encuestas";
     constructor(_http) {
         this._http = _http;
     }
@@ -15,6 +16,10 @@ class PollingAvailable {
     async questions(pollEntry) {
         const questions = await this._http.request(this._polls, "POST", {}, pollEntry);
         return questions;
+    }
+    async respond(pollEntry) {
+        const response = await this._http.request(this._respond, "POST", {}, pollEntry);
+        return response;
     }
 }
 exports.PollingAvailable = PollingAvailable;

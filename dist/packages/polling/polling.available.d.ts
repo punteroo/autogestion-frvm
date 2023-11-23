@@ -18,12 +18,24 @@ export interface IPollingAvailable {
      * @returns {Promise<PollQuestions>}
      */
     questions(pollEntry: PollEntry): Promise<PollQuestions>;
+    /**
+     * Responds to an ongoing poll.
+     *
+     * The poll must have the optional `respuesta` and `opinion` fields filled, else the service will throw a missing fields error.
+     *
+     * @param {PollEntry} pollEntry The poll entry to respond to.
+     *
+     * @returns {Promise<PollQuestions>}
+     */
+    respond(pollEntry: PollEntry): Promise<PollQuestions>;
 }
 export declare class PollingAvailable implements IPollingAvailable {
     private readonly _http;
     private readonly _available;
     private readonly _polls;
+    private readonly _respond;
     constructor(_http: HttpClient);
     fetch(): Promise<Array<PollEntry>>;
     questions(pollEntry: PollEntry): Promise<PollQuestions>;
+    respond(pollEntry: PollEntry): Promise<PollQuestions>;
 }
