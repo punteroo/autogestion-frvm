@@ -23,10 +23,10 @@ Puedes leer los docs oficiales del paquete [aquí](https://github.com/punteroo/a
     - [X] Histórico de materias cursadas
     - [X] Estado Académico
     - [X] Horarios de cursado para materias actuales
-- [ ] Administración de Encuestas Docentes
+- [X] Administración de Encuestas Docentes
     - [X] Consultar encuestas docentes disponibles
-    - [ ] Consultar preguntas de una encuesta docente
-    - [ ] Responder encuestas docentes
+    - [X] Consultar preguntas de una encuesta docente
+    - [X] Responder encuestas docentes
 - [X] Administración de Exámenes Finales
     - [X] Consultar exámenes disponibles para rendir
     - [X] Consultar turnos de exámenes específicos
