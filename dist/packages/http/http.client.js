@@ -6,26 +6,39 @@ const axios_1 = tslib_1.__importDefault(require("axios"));
 class HttpClient {
     #baseUri;
     #accessToken;
-    constructor(baseUri, username, password) {
+    #timeout;
+    constructor(baseUri, username, password, timeout = 60000) {
         this.#baseUri = baseUri;
         this.#accessToken = Buffer.from(username && password ? `${username}:${password}` : "").toString("base64");
+        this.#timeout = timeout;
     }
     async request(resource, method, headers, body) {
         const url = `${this.#baseUri}/${resource}`;
+        const request_controller = new AbortController();
         try {
-            const { data } = await (0, axios_1.default)({
-                method,
+            const timeout = setTimeout(() => {
+                request_controller.abort("Request has exceeded the set timeout.");
+                throw new Error("Request has exceeded the set timeout.");
+            }, this.#timeout);
+            const response = await axios_1.default.request({
                 url,
+                method,
                 headers: {
                     Authorization: `Basic ${this.#accessToken}`,
-                    ...(headers ?? {}),
+                    ...headers,
                 },
-                data: body ?? undefined,
+                data: body,
+                timeout: this.#timeout,
+                timeoutErrorMessage: "Request has exceeded the set timeout.",
+                signal: request_controller.signal,
             });
-            return data;
+            clearTimeout(timeout);
+            return response.data;
         }
         catch (e) {
             console.error(e?.response?.data ?? e?.message ?? e);
+            if (e?.code === "ECONNABORTED")
+                throw new Error(e?.message ?? "Request has exceeded the set timeout.");
             throw new Error(e?.response?.data?.message ?? e?.message ?? e);
         }
     }

@@ -20,12 +20,17 @@ class Autogestion {
     _exams;
     _polling;
     _http;
+    _settings = {
+        baseUrl: "https://webservice.frvm.utn.edu.ar/autogestion",
+        timeoutMs: 60000,
+    };
     #username;
     #password;
-    constructor(username, password) {
+    constructor(username, password, options) {
         this.#username = username;
         this.#password = password;
-        this._http = new http_client_1.HttpClient("https://webservice.frvm.utn.edu.ar/autogestion", null, null);
+        this._settings = { ...this._settings, ...options };
+        this._http = new http_client_1.HttpClient(this._settings.baseUrl, null, null, this._settings.timeoutMs);
     }
     /**
      * Change the client's current username to perform a re-auth.
