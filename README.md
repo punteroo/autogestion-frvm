@@ -32,11 +32,11 @@ Puedes leer los docs oficiales del paquete [aquí](https://github.com/punteroo/a
     - [X] Consultar turnos de exámenes específicos
     - [X] Inscribir a exámen final
     - [X] Anular inscripción a exámen final
-- [ ] Administración de Cursado
-    - [ ] Consultar materias disponibles para cursar
-    - [ ] Consultar comisiones disponibles de una materia
-    - [ ] Inscribir a cursado de una materia
-    - [ ] Anular inscripción a cursado
+- [X] Administración de Cursado
+    - [X] Consultar materias disponibles para cursar
+    - [X] Consultar comisiones disponibles de una materia
+    - [X] Inscribir a cursado de una materia
+    - [X] Anular inscripción a cursado
 - [ ] Administración de Certificados
     - [ ] Consultar certificados disponibles
     - [ ] Solicitar un certificado

@@ -1,3 +1,4 @@
+import { AutogestionOptions } from "../../types";
 import { ICalendar } from "../course/calendar/course.calendar";
 import { ICourse } from "../course/course";
 import { IExams } from "../exam/exam";
@@ -36,8 +37,9 @@ export declare class Autogestion implements IAutogestion {
     private _exams;
     private _polling;
     private _http;
-    constructor(username: string);
-    constructor(username: string, password: string);
+    private _settings;
+    constructor(username: string, password: undefined, options?: AutogestionOptions);
+    constructor(username: string, password: string, options?: AutogestionOptions);
     /**
      * Change the client's current username to perform a re-auth.
      *

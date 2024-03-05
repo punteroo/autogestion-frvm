@@ -1,11 +1,15 @@
 import { HttpClient } from "../http/http.client";
-import { StudentCourses } from "./student/course.student";
+import { ICourseInscription } from "./inscription/course.inscription";
+import { IStudentCourses } from "./student/course.student";
 export interface ICourse {
     /** Accesses current courses being taken by the authenticated student. */
-    student: StudentCourses;
+    student: IStudentCourses;
+    /** Course inscription context. */
+    inscription: ICourseInscription;
 }
 export declare class Course implements ICourse {
     private readonly _http;
-    student: StudentCourses;
+    student: IStudentCourses;
+    inscription: ICourseInscription;
     constructor(_http: HttpClient);
 }

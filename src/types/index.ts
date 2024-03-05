@@ -1,11 +1,15 @@
-export * from './academic/academic.status.entry';
+export * from "./client.types";
 
-export * from './persona/persona.types';
+export * from "./academic/academic.status.entry";
 
-export * from './polls/poll.entry';
-export * from './polls/poll.questions';
+export * from "./course/course.inscription";
 
-export * from './exam/exam.available';
-export * from './exam/exam.enroll';
-export * from './exam/exam.turn';
-export * from './exam/exam.void';
+export * from "./persona/persona.types";
+
+export * from "./polls/poll.entry";
+export * from "./polls/poll.questions";
+
+export * from "./exam/exam.available";
+export * from "./exam/exam.enroll";
+export * from "./exam/exam.turn";
+export * from "./exam/exam.void";
