@@ -1,3 +1,4 @@
+import { AutogestionOptions } from "../../types";
 import { Calendar, ICalendar } from "../course/calendar/course.calendar";
 import { Course, ICourse } from "../course/course";
 import { Exams, IExams } from "../exam/exam";
@@ -43,19 +44,35 @@ export class Autogestion implements IAutogestion {
 
   private _http: HttpClient;
 
+  private _settings: AutogestionOptions = {
+    baseUrl: "https://webservice.frvm.utn.edu.ar/autogestion",
+    timeoutMs: 60000,
+  };
+
   #username: string;
   #password: string;
 
-  constructor(username: string);
-  constructor(username: string, password: string);
-  constructor(username: string, password?: string) {
+  constructor(
+    username: string,
+    password: undefined,
+    options?: AutogestionOptions
+  );
+  constructor(username: string, password: string, options?: AutogestionOptions);
+  constructor(
+    username: string,
+    password?: string,
+    options?: AutogestionOptions
+  ) {
     this.#username = username;
     this.#password = password;
 
+    this._settings = { ...this._settings, ...options };
+
     this._http = new HttpClient(
-      "https://webservice.frvm.utn.edu.ar/autogestion",
+      this._settings.baseUrl,
       null,
-      null
+      null,
+      this._settings.timeoutMs
     );
   }
 

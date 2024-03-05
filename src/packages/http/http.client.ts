@@ -4,12 +4,20 @@ export class HttpClient {
   #baseUri: string;
 
   #accessToken?: string;
+  #timeout: number;
 
-  constructor(baseUri: string, username: string, password: string) {
+  constructor(
+    baseUri: string,
+    username: string,
+    password: string,
+    timeout = 60000
+  ) {
     this.#baseUri = baseUri;
     this.#accessToken = Buffer.from(
       username && password ? `${username}:${password}` : ""
     ).toString("base64");
+
+    this.#timeout = timeout;
   }
 
   async request<T>(
@@ -20,20 +28,36 @@ export class HttpClient {
   ): Promise<T> {
     const url = `${this.#baseUri}/${resource}`;
 
+    const request_controller = new AbortController();
+
     try {
-      const { data } = await axios<T>({
-        method,
+      const timeout = setTimeout(() => {
+        request_controller.abort("Request has exceeded the set timeout.");
+        throw new Error("Request has exceeded the set timeout.");
+      }, this.#timeout);
+
+      const response = await axios.request<T>({
         url,
+        method,
         headers: {
           Authorization: `Basic ${this.#accessToken}`,
-          ...(headers ?? {}),
+          ...headers,
         },
-        data: body ?? undefined,
+        data: body,
+        timeout: this.#timeout,
+        timeoutErrorMessage: "Request has exceeded the set timeout.",
+        signal: request_controller.signal,
       });
 
-      return data;
+      clearTimeout(timeout);
+
+      return response.data;
     } catch (e) {
       console.error(e?.response?.data ?? e?.message ?? e);
+
+      if (e?.code === "ECONNABORTED")
+        throw new Error(e?.message ?? "Request has exceeded the set timeout.");
+
       throw new Error(e?.response?.data?.message ?? e?.message ?? e);
     }
   }
