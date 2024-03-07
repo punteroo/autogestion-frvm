@@ -15,11 +15,11 @@ class HttpClient {
     async request(resource, method, headers, body) {
         const url = `${this.#baseUri}/${resource}`;
         const request_controller = new AbortController();
+        const timeout = setTimeout(() => {
+            request_controller.abort("Request has exceeded the set timeout.");
+            throw new Error("Request has exceeded the set timeout.");
+        }, this.#timeout);
         try {
-            const timeout = setTimeout(() => {
-                request_controller.abort("Request has exceeded the set timeout.");
-                throw new Error("Request has exceeded the set timeout.");
-            }, this.#timeout);
             const response = await axios_1.default.request({
                 url,
                 method,
@@ -36,6 +36,7 @@ class HttpClient {
             return response.data;
         }
         catch (e) {
+            clearTimeout(timeout);
             console.error(e?.response?.data ?? e?.message ?? e);
             if (e?.code === "ECONNABORTED")
                 throw new Error(e?.message ?? "Request has exceeded the set timeout.");
