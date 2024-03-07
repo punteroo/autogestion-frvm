@@ -30,12 +30,12 @@ export class HttpClient {
 
     const request_controller = new AbortController();
 
-    try {
-      const timeout = setTimeout(() => {
-        request_controller.abort("Request has exceeded the set timeout.");
-        throw new Error("Request has exceeded the set timeout.");
-      }, this.#timeout);
+    const timeout = setTimeout(() => {
+      request_controller.abort("Request has exceeded the set timeout.");
+      throw new Error("Request has exceeded the set timeout.");
+    }, this.#timeout);
 
+    try {
       const response = await axios.request<T>({
         url,
         method,
@@ -50,9 +50,10 @@ export class HttpClient {
       });
 
       clearTimeout(timeout);
-
+      
       return response.data;
     } catch (e) {
+      clearTimeout(timeout);
       console.error(e?.response?.data ?? e?.message ?? e);
 
       if (e?.code === "ECONNABORTED")
