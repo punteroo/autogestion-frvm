@@ -104,6 +104,13 @@ export interface StudentCourse {
 
 export interface IStudentCourses {
   /**
+   * Accesses the student's academic information.
+   *
+   * @returns {IStudentAcademic}
+   */
+  academic: IStudentAcademic;
+
+  /**
    * Searches for only the current courses being taken by the authenticated student.
    *
    * @noparams
